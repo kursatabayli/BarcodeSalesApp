@@ -1,0 +1,17 @@
+﻿<MudDrawer Open="@UIStateOption.drawerOpen"
+           OpenChanged="@HandleDrawerOpenChanged"
+           Breakpoint="Breakpoint.Sm"
+           Variant="DrawerVariant.Mini"
+           ClipMode="DrawerClipMode.Always"
+           Elevation="2">
+    <MudNavMenu Rounded="UIStateOption.drawerOpen"
+                Class="@(UIStateOption.drawerOpen ? "pa-2" : null )"
+                Margin="@(UIStateOption.drawerOpen ? Margin.Normal : Margin.None )"
+                Bordered="!UIStateOption.drawerOpen">
+        <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShoppingCart">@Localizer["Sales"]</MudNavLink>
+        <MudNavLink Href="product-list" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">@Localizer["ProductList"]</MudNavLink>
+        <MudNavLink Href="add-product" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.AddBox">@Localizer["AddProduct"]</MudNavLink>
+        <MudNavLink Href="cash-out" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.History">@Localizer["CashOut"]</MudNavLink>
+        <MudNavLink Href="settings" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Settings">@Localizer["Settings"]</MudNavLink>
+    </MudNavMenu>
+</MudDrawer>

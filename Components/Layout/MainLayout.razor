@@ -1,0 +1,58 @@
+﻿@using Barkod.Constants
+@using Barkod.Interfaces
+@inherits LayoutComponentBase
+@inject IStringLocalizer<Lang> Localizer
+@inject IUIStateService UIStateService
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="UIStateOption.isDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <AppBar />
+    <NavMenu />
+    <MudMainContent>
+        <MudItem xs="12" Class="mt-6 pa-6">
+            @Body
+        </MudItem>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme? _theme = null;
+    private UIStateOption UIStateOption { get; set; }
+
+    protected override void OnInitialized()
+    {
+        UIStateService.OnChange += HandleStateChange;
+        UIStateService.LoadUIState();
+        UIStateOption = UIStateService.UIState;
+
+        _theme = new MudTheme
+            {
+                PaletteLight = new PaletteLight
+                {
+                    Black = "#110e2d",
+                    AppbarText = "#424242",
+                    AppbarBackground = "#ffffff",
+                    DrawerBackground = "#ffffff",
+                    GrayLight = "#e8e8e8",
+                    GrayLighter = "#f9f9f9",
+                    HoverOpacity = 0.12,
+                },
+                PaletteDark = new PaletteDark(),
+                LayoutProperties = new LayoutProperties()
+            };
+
+        base.OnInitialized();
+    }
+
+    private void HandleStateChange()
+    {
+        UIStateOption = UIStateService.UIState;
+        StateHasChanged();
+    }
+
+    public void Dispose() => UIStateService.OnChange -= HandleStateChange;
+}

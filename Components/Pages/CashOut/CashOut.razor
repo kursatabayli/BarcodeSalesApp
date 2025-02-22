@@ -1,0 +1,100 @@
+﻿@page "/cash-out"
+@using Barkod.Models
+
+
+<MudGrid>
+    <!-- Başlık ve Kontroller -->
+    <MudItem xs="12" Class="mb-4">
+        <MudText Typo="Typo.h3" Class="d-flex align-center">
+            <MudIcon Icon="@Icons.Material.Filled.Assignment" Class="mr-2" />
+            @Localizer["EndOfDayReport"]
+        </MudText>
+    </MudItem>
+
+    <MudItem xs="6" sm="3">
+        <MudSelect T="DateOnly" Label="@Localizer["SelectDate"]" @bind-Value="SelectedDate">
+            @foreach (var date in AvailableDates)
+            {
+                <MudSelectItem Value="@date">@date</MudSelectItem>
+            }
+        </MudSelect>
+    </MudItem>
+
+    <MudItem xs="6" sm="3">
+        <MudButton OnClick="LoadDailySales"
+                   Color="Color.Info"
+                   Variant="Variant.Filled"
+                   FullWidth="false"
+                   EndIcon="@Icons.Material.Filled.Check">
+            @Localizer["Confirm"]
+        </MudButton>
+    </MudItem>
+
+    <MudSpacer />
+
+    <MudItem xs="12" sm="6" md="4" Class="mb-4">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudStack>
+                <MudText Typo="Typo.h6" Class="d-flex align-center gap-2">
+                    <MudIcon Icon="@Icons.Material.Filled.PointOfSale" Class="mr-2" />
+                    <strong>@Localizer["TotalSales"]:</strong> @TotalSales.ToString("C")
+                </MudText>
+                <MudText Typo="Typo.h6" Class="d-flex align-center gap-2">
+                    <MudIcon Icon="@Icons.Material.Filled.TrendingUp" Class="mr-2" />
+                    <strong>@Localizer["TotalProfit"]:</strong> @TotalProfit.ToString("C")
+                </MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@if (DailySalesRecords != null && DailySalesRecords.Any())
+{
+    <MudTable Items="@FilteredProducts" Hover="true" Sortable="true" FixedHeader="true" Dense="true" SortLabel="@Localizer["SortBy"]">
+        <ToolBarContent>
+
+            <MudItem Class="mb-4">
+                <MudText Typo="Typo.h5" Class="d-flex align-center">
+                    @Localizer["SalesList"] @SelectedDate
+                </MudText>
+            </MudItem>
+            <MudSpacer />
+            <MudTextField @bind-Value="SearchText" Placeholder="@Localizer["Search"]" Adornment="Adornment.Start"
+                          AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium"
+                          Immediate="true" Class="mt-0" Variant="Variant.Outlined" Clearable />
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<SalesRecord, object>(x => DailySalesRecords.IndexOf(x))">#</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<SalesRecord, object>(x=>x.Name)">@Localizer["ProductName"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<SalesRecord, object>(x=>x.QuantitySold)">@Localizer["QuantitySold"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<SalesRecord, object>(x=>x.SalePrice)">@Localizer["SaleAmount"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<SalesRecord, object>(x=>x.Profit)">@Localizer["Profit"]</MudTableSortLabel></MudTh>
+        </HeaderContent>
+
+        <RowTemplate Context="salesRecord">
+            <MudTd hidden="true">@salesRecord.Barcode</MudTd>
+            <MudTd DataLabel="#">@(DailySalesRecords.IndexOf(salesRecord) + 1)</MudTd>
+            <MudTd DataLabel="@Localizer["ProductName"]">@salesRecord.Name</MudTd>
+            <MudTd DataLabel="@Localizer["QuantitySold"]">@salesRecord.QuantitySold</MudTd>
+            <MudTd DataLabel="@Localizer["SaleAmount"]">@salesRecord.TotalSales.ToString("C")</MudTd>
+            <MudTd DataLabel="@Localizer["Profit"]">@salesRecord.TotalProfit.ToString("C")</MudTd>
+        </RowTemplate>
+
+        <PagerContent>
+            @if (FilteredProducts.Count() > 10)
+            {
+                <MudTablePager RowsPerPageString="@Localizer["RowsPerPage"]" InfoFormat="{first_item}-{last_item}" />
+            }
+        </PagerContent>
+    </MudTable>
+}
+else
+{
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="12" sm="8" md="6" lg="4">
+            <MudAlert Severity="Severity.Info" Class="mt-4">
+                @Localizer["NoSalesFound"]
+            </MudAlert>
+        </MudItem>
+    </MudGrid>
+}

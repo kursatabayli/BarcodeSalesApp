@@ -1,0 +1,17 @@
+﻿<MudItem>
+    <MudSelect T="string"
+               Label=@Localizer["Language"]
+               Margin="Margin.Dense"
+               Dense="true"
+               Value="@activeLanguage.CultureCode"
+               ValueChanged="ChangeLanguage"
+               Class="mt-4" Variant="Variant.Outlined">
+        @foreach (var language in LanguageService.Languages)
+        {
+            var culture = CultureInfo.GetCultureInfo(language.CultureCode);
+            <MudSelectItem Value="@language.CultureCode">
+                <MudImage src="" height="14" class="mr-1" />@culture.NativeName
+            </MudSelectItem>
+        }
+    </MudSelect>
+</MudItem>

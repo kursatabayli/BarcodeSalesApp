@@ -1,0 +1,64 @@
+﻿@page "/edit-stock/{id:int}"
+
+
+<EditForm Model="product" OnValidSubmit="UpdateProductAsync">
+    <DataAnnotationsValidator />
+    <MudGrid Spacing="4" Justify="Justify.Center">
+        <MudItem xs="12" sm="8" md="6" lg="4">
+            <MudItem Class="mb-5">
+                <MudText Typo="Typo.h5" Class="d-flex align-center">
+                    <MudIcon Icon="@Icons.Material.Filled.Warehouse" Class="mr-2" />
+                    @Localizer["StockUpdate"] - @product?.Name
+                </MudText>
+            </MudItem>
+
+            <MudItem Class="mb-4">
+                <MudText Typo="Typo.body1">
+                    <MudIcon Icon="@Icons.Material.Filled.Inventory" Class="mr-2" />
+                    <strong>@Localizer["StockUnitCount"]:</strong> @product?.StockUnit
+                </MudText>
+            </MudItem>
+
+            <MudItem Class="mb-4">
+                <MudText Typo="Typo.body1">
+                    <MudIcon Icon="@Icons.Material.Filled.Widgets" Class="mr-2" />
+                    <strong>@Localizer["TotalStockQuantity"]:</strong> @product?.StockQuantity
+                </MudText>
+            </MudItem>
+
+            <MudItem Class="mb-4">
+                <MudNumericField Label="@Localizer["IncomingBoxAmount"]"
+                                 @bind-Value="newStockUnit"
+                                 Variant="Variant.Outlined"
+                                 Margin="Margin.Dense"
+                                 FullWidth
+                                 HideSpinButtons="true" />
+            </MudItem>
+        </MudItem>
+    </MudGrid>
+    <MudStack Row="true" Spacing="4" Justify="Justify.Center" Class="mt-6">
+        <MudItem>
+            <MudButton OnClick='() => NavigatePage($"/product-detail/{Id}")'
+                       Color="Color.Secondary"
+                       Variant="Variant.Outlined"
+                       EndIcon="@Icons.Material.Filled.ArrowBack">
+                @Localizer["Back"]
+            </MudButton>
+        </MudItem>
+        <MudItem>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Success"
+                       ButtonType="ButtonType.Submit"
+                       EndIcon="@Icons.Material.Filled.Save">
+                @Localizer["Update"]
+            </MudButton>
+        </MudItem>
+        <MudItem>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Error"
+                       OnClick="ResetStockAsync">
+                @Localizer["ResetStock"]
+            </MudButton>
+        </MudItem>
+    </MudStack>
+</EditForm>

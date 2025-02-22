@@ -1,0 +1,57 @@
+﻿@page "/product-list"
+@using Barkod.Models
+
+
+<MudItem xs="12" Class="mb-4">
+    <MudText Typo="Typo.h3" Class="d-flex align-center">
+        <MudIcon Icon="@Icons.Material.Filled.List" Class="mr-2" />
+        @Localizer["ProductList"]
+    </MudText>
+</MudItem>
+
+<MudTable Items="@FilteredProducts" Hover="true" FixedHeader="true" Dense="true" SortLabel="@Localizer["SortBy"]">
+    <ToolBarContent>
+        <MudSpacer />
+        <MudTextField @bind-Value="SearchText"
+                      Placeholder="@Localizer["Search"]"
+                      Adornment="Adornment.Start"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="Size.Medium"
+                      Variant="Variant.Outlined"
+                      Immediate="true"
+                      Class="mt-0"
+                      Clearable />
+    </ToolBarContent>
+
+    <HeaderContent>
+        <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<Product, object>(x => products.IndexOf(x))">#</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Name)">@Localizer["ProductName"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.PurchasePrice)">@Localizer["PurchasePrice"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.SalePrice)">@Localizer["SalePrice"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.Profit)">@Localizer["Profit"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortBy="new Func<Product, object>(x=>x.StockUnit)">@Localizer["StockUnit"]</MudTableSortLabel></MudTh>
+        <MudTh>@Localizer["ProductDetail"]</MudTh>
+    </HeaderContent>
+
+    <RowTemplate Context="product">
+        <MudTd hidden="true">@product.Barcode</MudTd>
+        <MudTd DataLabel="#">@(products.IndexOf(product) + 1)</MudTd>
+        <MudTd DataLabel="@Localizer["ProductName"]">@product.Name</MudTd>
+        <MudTd DataLabel="@Localizer["PurchasePrice"]">@product.PurchasePrice.ToString("C")</MudTd>
+        <MudTd DataLabel="@Localizer["SalePrice"]">@product.SalePrice.ToString("C")</MudTd>
+        <MudTd DataLabel="@Localizer["Profit"]">@product.Profit.ToString("C")</MudTd>
+        <MudTd DataLabel="@Localizer["StockUnit"]">@($"{product.StockUnit}/{product.StockQuantity}")</MudTd>
+        <MudTd DataLabel="@Localizer["ProductDetail"]">
+            <MudButton OnClick="() => ProductDetail(product)" Color="MudBlazor.Color.Info" Variant="MudBlazor.Variant.Outlined">
+                @Localizer["ViewDetails"]
+            </MudButton>
+        </MudTd>
+    </RowTemplate>
+
+    <PagerContent>
+        @if (FilteredProducts.Count() > 10)
+        {
+            <MudTablePager RowsPerPageString="@Localizer["RowsPerPage"]" InfoFormat="{first_item}-{last_item}" />
+        }
+    </PagerContent>
+</MudTable>

@@ -1,0 +1,86 @@
+﻿@page "/"
+
+<MudText Typo="Typo.h3" Class="mb-4 d-flex align-center">
+    <MudIcon Icon="@Icons.Material.Filled.PointOfSale" Class="mr-2" />
+    @Localizer["SalesPage"]
+</MudText>
+
+<MudGrid Class="align-items-end">
+    <MudItem md="4" Class="mt-6">
+        <MudNumericField @ref="barcodeField"
+                         @bind-Value="@scannedBarcode"
+                         @bind-Value:after="(() => OnBarcodeScanned())"
+                         @onkeydown="HandleBarcodeKeyDown"
+                         OnBlur="@(() => _focusManager.HandleBlurAsync())"
+                         Immediate="true"
+                         AutoFocus="true"
+                         HideSpinButtons="true"
+                         Variant="Variant.Outlined"
+                         Placeholder="@Localizer["ScanBarcode"]" 
+                         Clearable />
+    </MudItem>
+
+    <MudSpacer />
+
+    <MudItem md="4" Class="mt-4 p-3">
+        <MudPaper Elevation="2" Class="pa-4">
+            <MudText Typo="Typo.h4">
+                @Localizer["Total"]: @_cartManager.TotalAmount.ToString("C")
+            </MudText>
+            <MudItem Class="mt-2">
+                <MudButton Color="Color.Success" OnClick="CompleteSaleAsync">
+                    @Localizer["CompleteSale"]
+                </MudButton>
+                <MudButton Color="Color.Error" OnClick="@(() => { _cartManager.ClearCart(); StateHasChanged(); })">
+                    @Localizer["Clear"]
+                </MudButton>
+                <MudIconButton OnClick='() => NavigatePage("/edit-shortcut")' Icon="@Icons.Material.Filled.Settings" Color="Color.Inherit" title="@Localizer["EditShortcuts"]"/>
+            </MudItem>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+<MudGrid Class="mt-6">
+    <MudItem xs="12" Class="mt-4">
+        <MudPaper Elevation="2">
+            <MudTable Items="@_cartManager.Cart" Hover="true" Dense="true" FixedHeader="true">
+                <HeaderContent>
+                    <MudTh>@Localizer["ProductName"]</MudTh>
+                    <MudTh>@Localizer["Quantity"]</MudTh>
+                    <MudTh>@Localizer["UnitPrice"]</MudTh>
+                    <MudTh>@Localizer["Total"]</MudTh>
+                    <MudTh>@Localizer["Remove"]</MudTh>
+                </HeaderContent>
+
+                <RowTemplate Context="item">
+                    <MudTd>@item.Name</MudTd>
+                    <MudTd>
+                        <MudSelect T="int"
+                                   Value="@item.Quantity"
+                                   ValueChanged="@(newQuantity => _cartManager.UpdateQuantity(item, newQuantity))"
+                                   Variant="Variant.Outlined"
+                                   Immediate="true"
+                                   OnOpen="@(() => _focusManager.ChangeFocus())"
+                                   OnClose="@(() => _focusManager.OnSelectClosed())"
+                                   Class="my-select">
+                            @for (int i = 1; i <= 50; i++)
+                            {
+                                var optionValue = i;
+                                <MudSelectItem Value="@optionValue">@optionValue</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudTd>
+                    <MudTd>@item.SalePrice.ToString("C")</MudTd>
+                    <MudTd>@item.Total.ToString("C")</MudTd>
+                    <MudTd>
+                        <MudIconButton Icon="@Icons.Material.Filled.Remove"
+                                       Color="Color.Warning"
+                                       OnClick="() => _cartManager.RemoveProduct(item.Barcode)"
+                                       Size="Size.Small"
+                                       Variant="MudBlazor.Variant.Filled" />
+                    </MudTd>
+                </RowTemplate>
+            </MudTable>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
