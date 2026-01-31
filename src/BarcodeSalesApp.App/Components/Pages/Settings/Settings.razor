@@ -1,0 +1,32 @@
+﻿@page "/settings"
+@using BarcodeSalesApp.App.Resources.Strings
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-8">
+  <MudPaper Elevation="0" Class="pa-4 rounded-lg">
+    <MudText Typo="Typo.h4" GutterBottom="true">@Localizer[AppStrings.Settings]</MudText>
+    @* <MudText Color="Color.Secondary" Class="mb-6">@Localizer[AppStrings.SettingsDescription]</MudText> *@
+
+    <MudList T="string">
+
+      <MudListItem OnClick="() => ChangeLanguage()">
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+          <MudIcon Icon="@Icons.Material.Filled.Language" Color="Color.Primary" Class="mr-4" />
+          <div class="flex-grow-1">
+            <MudText><b>@Localizer[AppStrings.ChangeLanguage]</b></MudText>
+          </div>
+          <MudIcon Icon="@Icons.Material.Filled.ChevronRight" />
+        </MudStack>
+      </MudListItem>
+
+      <MudDivider />
+
+      <MudListItem>
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+          <SetTheme />
+        </MudStack>
+      </MudListItem>
+
+    </MudList>
+
+  </MudPaper>
+</MudContainer>

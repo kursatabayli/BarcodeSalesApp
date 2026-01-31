@@ -1,0 +1,35 @@
+﻿@using System.Globalization
+@using BarcodeSalesApp.App.Resources.Strings
+
+<MudDialog Style="width: 400px;">
+  <TitleContent>
+    <MudText Typo="Typo.h6">
+      <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudIcon Icon="@Icons.Material.Filled.Language" Class="mr-2" />
+        @Localizer[AppStrings.ChangeLanguage]
+      </MudStack>
+    </MudText>
+  </TitleContent>
+  <DialogContent>
+    <MudSelect T="string" Label=@Localizer[AppStrings.Language] Margin="Margin.Dense" Dense="true"
+      @bind-Value="_selectedCulture" Class="mt-4" Variant="Variant.Outlined">
+
+      @foreach (var language in LanguageService.Languages)
+      {
+        <MudSelectItem Value="@language.CultureCode">
+          <MudStack Row="true" AlignItems="AlignItems.Center">
+            <MudImage src="@SetLanguage.GetImgPath(language.CultureCode)" alt="@language.DisplayName" Width="20"
+              Height="15" />
+            @language.DisplayName
+          </MudStack>
+        </MudSelectItem>
+      }
+    </MudSelect>
+  </DialogContent>
+  <DialogActions>
+    <MudButton OnClick="ChangeLanguage" Variant="Variant.Filled" Color="Color.Primary">
+      @Localizer[AppStrings.Save]
+    </MudButton>
+    <MudButton OnClick="Cancel" Variant="Variant.Text">@Localizer[AppStrings.Cancel]</MudButton>
+  </DialogActions>
+</MudDialog>

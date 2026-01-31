@@ -1,0 +1,18 @@
+﻿@using BarcodeSalesApp.App.Resources.Strings
+@using Microsoft.Extensions.Localization
+
+<MudNavMenu Rounded="false" Margin="Margin.Normal">
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.ShoppingCart">
+        @Localizer[AppStrings.Sales]
+    </MudNavLink>
+    <MudNavLink Href="product-list" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">
+        @Localizer[AppStrings.ProductList]</MudNavLink>
+    <MudNavLink Href="sales-records" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.History">
+        @Localizer[AppStrings.SalesRecords]</MudNavLink>
+    <MudNavLink Href="settings" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Settings">
+        @Localizer[AppStrings.Settings]</MudNavLink>
+</MudNavMenu>
+
+@code {
+    [Inject] private IStringLocalizer<AppStrings> Localizer { get; set; } = default!;
+}

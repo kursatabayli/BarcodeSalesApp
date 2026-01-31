@@ -1,0 +1,97 @@
+﻿@page "/sales-records"
+@using BarcodeSalesApp.App.Models.SalesRecordModels
+@using BarcodeSalesApp.App.Resources.Strings
+@using BarcodeSalesApp.Application.Features.CQRS.SalesRecords.Queries
+
+
+<MudGrid>
+  <MudItem xs="12" Class="mb-4">
+    <MudText Typo="Typo.h3" Class="d-flex align-center">
+      <MudIcon Icon="@Icons.Material.Filled.Assignment" Class="mr-2" />
+      @Localizer[AppStrings.EndOfDayReport]
+    </MudText>
+  </MudItem>
+
+  <MudItem xs="6" sm="3">
+    <MudDatePicker Label="@Localizer["SelectDate"]" @bind-Date="SelectedDate" MaxDate="DateTime.Today" MinDate="MinDate"
+      Variant="Variant.Outlined" @bind-Date:after="OnDateChangedAsync" />
+  </MudItem>
+
+  <MudSpacer />
+
+  <MudItem xs="12" sm="6" md="4" Class="mb-4">
+    <MudPaper Elevation="2" Class="pa-4">
+      <MudStack>
+        <MudText Typo="Typo.h6" Class="d-flex align-center gap-2">
+          <MudIcon Icon="@Icons.Material.Filled.PointOfSale" Class="mr-2" />
+          <strong>@Localizer[AppStrings.TotalSales]:</strong> @TotalSales.ToString("C")
+        </MudText>
+        <MudText Typo="Typo.h6" Class="d-flex align-center gap-2">
+          <MudIcon Icon="@Icons.Material.Filled.TrendingUp" Class="mr-2" />
+          <strong>@Localizer[AppStrings.TotalProfit]:</strong> @TotalProfit.ToString("C")
+        </MudText>
+      </MudStack>
+    </MudPaper>
+  </MudItem>
+</MudGrid>
+
+<MudTable T="SalesRecordModel" ServerData="ServerReload" @ref="_table" Hover="true" FixedHeader="true" Dense="true"
+  SortLabel="@Localizer[AppStrings.SortBy]">
+
+  <ToolBarContent>
+    <MudItem Class="mb-4">
+      <MudText Typo="Typo.h5" Class="d-flex align-center">
+        @Localizer[AppStrings.SalesList] @SelectedDateOnly
+      </MudText>
+    </MudItem>
+    <MudSpacer />
+    <MudTextField @bind-Value="SearchText" Placeholder="@Localizer[AppStrings.Search]" Adornment="Adornment.Start"
+      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Immediate="true" DebounceInterval="300"
+      Class="mt-0" Variant="Variant.Outlined" Clearable />
+  </ToolBarContent>
+
+  <HeaderContent>
+    <MudTh>#</MudTh>
+    <MudTh>
+      <MudTableSortLabel T="SalesRecordModel" SortLabel="@nameof(SalesRecordSortColumn.Name)">
+        @Localizer[AppStrings.ProductName]
+      </MudTableSortLabel>
+    </MudTh>
+    <MudTh>
+      <MudTableSortLabel T="SalesRecordModel" SortLabel="@nameof(SalesRecordSortColumn.QuantitySold)">
+        @Localizer[AppStrings.QuantitySold]
+      </MudTableSortLabel>
+    </MudTh>
+    <MudTh>
+      <MudTableSortLabel T="SalesRecordModel" SortLabel="@nameof(SalesRecordSortColumn.SalePrice)">
+        @Localizer[AppStrings.SaleAmount]
+      </MudTableSortLabel>
+    </MudTh>
+    <MudTh>
+      <MudTableSortLabel T="SalesRecordModel" SortLabel="@nameof(SalesRecordSortColumn.TotalProfit)">
+        @Localizer[AppStrings.Profit]
+      </MudTableSortLabel>
+    </MudTh>
+  </HeaderContent>
+
+  <RowTemplate Context="salesRecord">
+    <MudTd hidden="true">@salesRecord.Barcode</MudTd>
+    <MudTd DataLabel="#">@(++Count)</MudTd>
+    <MudTd DataLabel="@Localizer[AppStrings.ProductName]">@salesRecord.Name</MudTd>
+    <MudTd DataLabel="@Localizer[AppStrings.QuantitySold]">@salesRecord.QuantitySold</MudTd>
+    <MudTd DataLabel="@Localizer[AppStrings.SaleAmount]">@salesRecord.TotalSales.ToString("C")</MudTd>
+    <MudTd DataLabel="@Localizer[AppStrings.Profit]">@salesRecord.TotalProfit.ToString("C")</MudTd>
+  </RowTemplate>
+  <NoRecordsContent>
+    <MudGrid Spacing="4" Justify="Justify.Center">
+      <MudItem xs="12" sm="8" md="6" lg="4">
+        <MudAlert Severity="Severity.Info" Class="mt-4">
+          @Localizer[AppStrings.NoSalesFound]
+        </MudAlert>
+      </MudItem>
+    </MudGrid>
+  </NoRecordsContent>
+  <PagerContent>
+    <MudTablePager RowsPerPageString="@Localizer[AppStrings.RowsPerPage]" InfoFormat="{first_item}-{last_item}" />
+  </PagerContent>
+</MudTable>

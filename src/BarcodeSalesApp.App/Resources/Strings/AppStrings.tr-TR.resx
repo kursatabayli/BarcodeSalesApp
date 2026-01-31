@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActiveLang" xml:space="preserve">
+    <value>Aktif Dil</value>
+  </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Ürün Ekle</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Geri Dön</value>
+  </data>
+  <data name="Barcode" xml:space="preserve">
+    <value>Barkod</value>
+  </data>
+  <data name="BoxCount" xml:space="preserve">
+    <value>Koli Sayısı</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="CartIsEmpty" xml:space="preserve">
+    <value>Sepet boş</value>
+  </data>
+  <data name="SalesRecords" xml:space="preserve">
+    <value>Satış Kayıtları</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Temizle</value>
+  </data>
+  <data name="ClearShortcutKey" xml:space="preserve">
+    <value>Temizleme Kısayolu</value>
+  </data>
+  <data name="CompleteSale" xml:space="preserve">
+    <value>Satışı Tamamla</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Onayla</value>
+  </data>
+  <data name="CurrentClearShortcut" xml:space="preserve">
+    <value>Temizleme Kısayolu:</value>
+  </data>
+  <data name="CurrentSaleShortcut" xml:space="preserve">
+    <value>&#x8;Satış Kısayolu: </value>
+  </data>
+  <data name="DayMode" xml:space="preserve">
+    <value>Aydınlık Mode</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="DeleteProductConfirmText" xml:space="preserve">
+    <value>Bu ürünü silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="DeleteProductError" xml:space="preserve">
+    <value>Silme işleminde hata oluştu!</value>
+  </data>
+  <data name="DeleteProductSuccess" xml:space="preserve">
+    <value>Ürün başarıyla silindi!</value>
+  </data>
+  <data name="DeleteProductTitle" xml:space="preserve">
+    <value>Ürünü Sil: {0}</value>
+  </data>
+  <data name="EditShortcuts" xml:space="preserve">
+    <value>Kısayolları Düzenle</value>
+  </data>
+  <data name="EndOfDayReport" xml:space="preserve">
+    <value>Gün Sonu Raporu</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>İngilizce</value>
+  </data>
+  <data name="EnterStock" xml:space="preserve">
+    <value>Stok Gir</value>
+  </data>
+  <data name="IncomingBoxAmount" xml:space="preserve">
+    <value>Gelen Koli Miktarı</value>
+  </data>
+  <data name="IsBarcoded" xml:space="preserve">
+    <value>Barkodlu mu?</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="NewProduct" xml:space="preserve">
+    <value>Yeni Ürün Eklendi!</value>
+  </data>
+  <data name="NightMode" xml:space="preserve">
+    <value>Karanlık Mod</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="NoClearShortcut" xml:space="preserve">
+    <value>Temizleme kısayolu bulunamadı!</value>
+  </data>
+  <data name="NoSalesFound" xml:space="preserve">
+    <value>Satış bulunamadı.</value>
+  </data>
+  <data name="NoSaleShortcut" xml:space="preserve">
+    <value>Satış İşlemi İçin Bir Kısayol Bulunmamakta!</value>
+  </data>
+  <data name="ProductDetail" xml:space="preserve">
+    <value>Ürün Detayları</value>
+  </data>
+  <data name="ProductExists" xml:space="preserve">
+    <value>Bu barkod ({0}) ile kayıtlı ürün: {1}</value>
+  </data>
+  <data name="ProductInBox" xml:space="preserve">
+    <value>Kolideki Ürün Sayısı</value>
+  </data>
+  <data name="ProductInfo" xml:space="preserve">
+    <value>Ürün Bilgileri</value>
+  </data>
+  <data name="ProductList" xml:space="preserve">
+    <value>Ürün Listesi</value>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Ürün Adı</value>
+  </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>Ürün Bulunamadı</value>
+  </data>
+  <data name="ProductUpdated" xml:space="preserve">
+    <value>Ürün Güncellendi</value>
+  </data>
+  <data name="Profit" xml:space="preserve">
+    <value>Kâr</value>
+  </data>
+  <data name="PurchasePrice" xml:space="preserve">
+    <value>Alış Fiyatı</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Adet</value>
+  </data>
+  <data name="QuantitySold" xml:space="preserve">
+    <value>Satılan Adet</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Eksilt</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="ResetKeys" xml:space="preserve">
+    <value>Kısayolları Sıfırla</value>
+  </data>
+  <data name="ResetShortcutConfirmText" xml:space="preserve">
+    <value>Kısayolları sıfırlamak istiyor musunuz?</value>
+  </data>
+  <data name="ResetShortcutError" xml:space="preserve">
+    <value>Sıfırlama İşlemi Sırasında Bir Hata Meydana Geldi</value>
+  </data>
+  <data name="ResetShortcutSuccess" xml:space="preserve">
+    <value>Kısayollar başarıyla sıfırlandı!</value>
+  </data>
+  <data name="ResetShortcutTitle" xml:space="preserve">
+    <value>Kısayolları Temizle</value>
+  </data>
+  <data name="ResetStock" xml:space="preserve">
+    <value>Stoğu Sıfırla</value>
+  </data>
+  <data name="ResetStockConfirmText" xml:space="preserve">
+    <value>Bu ürünün stoğunu sıfırlamak istediğinize emin misiniz?</value>
+  </data>
+  <data name="ResetStockError" xml:space="preserve">
+    <value>Sıfırlama İşlemi Sırasında Bir Hata Meydana Geldi</value>
+  </data>
+  <data name="ResetStockSuccess" xml:space="preserve">
+    <value>Stok başarıyla sıfırlandı! </value>
+  </data>
+  <data name="ResetStockTitle" xml:space="preserve">
+    <value>Stok Sıfırla</value>
+  </data>
+  <data name="RowsPerPage" xml:space="preserve">
+    <value>Sayfa Başına Satır Sayısı</value>
+  </data>
+  <data name="SaleAmount" xml:space="preserve">
+    <value>Satış Tutarı</value>
+  </data>
+  <data name="SaleFailed" xml:space="preserve">
+    <value>Satış başarısız oldu</value>
+  </data>
+  <data name="SalePrice" xml:space="preserve">
+    <value>Satış Fiyatı</value>
+  </data>
+  <data name="Sales" xml:space="preserve">
+    <value>Satış</value>
+  </data>
+  <data name="SaleShortcutKey" xml:space="preserve">
+    <value>Satış Kısayolu</value>
+  </data>
+  <data name="SalesList" xml:space="preserve">
+    <value>Satış Listesi</value>
+  </data>
+  <data name="SalesPage" xml:space="preserve">
+    <value>Satış Sayfası</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="ScanBarcode" xml:space="preserve">
+    <value>Barkod Tara:</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara...</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Tarih Seç</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Ayarlar</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sırala</value>
+  </data>
+  <data name="StockInfo" xml:space="preserve">
+    <value>Stok Bilgileri</value>
+  </data>
+  <data name="StockMultiplier" xml:space="preserve">
+    <value>Bir Kolideki Ürün Sayısı</value>
+  </data>
+  <data name="StockUnit" xml:space="preserve">
+    <value>Stok Miktarı</value>
+  </data>
+  <data name="StockUnitCount" xml:space="preserve">
+    <value>Stoktaki Koli Sayısı</value>
+  </data>
+  <data name="StockUpdate" xml:space="preserve">
+    <value>Stok Güncelle</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Barkod Satış</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Toplam</value>
+  </data>
+  <data name="TotalProfit" xml:space="preserve">
+    <value>Toplam Kar</value>
+  </data>
+  <data name="TotalSales" xml:space="preserve">
+    <value>Toplam Satış</value>
+  </data>
+  <data name="TotalStock" xml:space="preserve">
+    <value>Toplam Stok</value>
+  </data>
+  <data name="TotalStockQuantity" xml:space="preserve">
+    <value>Toplam Adet Stok</value>
+  </data>
+  <data name="Turkish" xml:space="preserve">
+    <value>Türkçe</value>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Birim Fiyat</value>
+  </data>
+  <data name="UnitsPerCase" xml:space="preserve">
+    <value>Koli Başına Ürün</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Güncelle</value>
+  </data>
+  <data name="UpdateProduct" xml:space="preserve">
+    <value>Ürün Güncelle</value>
+  </data>
+  <data name="UpdateShortcutSuccess" xml:space="preserve">
+    <value>Kısayollar Güncellendi!</value>
+  </data>
+  <data name="UpdateStockSuccess" xml:space="preserve">
+    <value>Stok Güncellendi!</value>
+  </data>
+  <data name="ViewDetails" xml:space="preserve">
+    <value>Detay Gör</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Dili Değiştir</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+</root>

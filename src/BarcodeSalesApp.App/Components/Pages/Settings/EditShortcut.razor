@@ -1,0 +1,79 @@
+﻿@page "/edit-shortcut"
+@using BarcodeSalesApp.App.Resources.Strings
+
+
+<EditForm Model="@currentShortcut" OnValidSubmit="UpdateShortcutAsync">
+  <DataAnnotationsValidator />
+  <MudGrid Spacing="4" Justify="Justify.Center">
+    <MudItem xs="12" sm="8" md="6" lg="4">
+      <MudItem Class="mb-5">
+        <MudText Typo="Typo.h5" Class="d-flex align-center">
+          <MudIcon Icon="@Icons.Material.Filled.Settings" Class="mr-2" />
+          @Localizer[AppStrings.EditShortcuts]
+        </MudText>
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudText Typo="Typo.body1">
+          <MudIcon Icon="@Icons.Material.Filled.ShoppingCart" Class="mr-2" />
+          @if (!string.IsNullOrEmpty(currentShortcut.SaleKey))
+          {
+            <strong>@Localizer[AppStrings.CurrentSaleShortcut]</strong>
+            @currentShortcut.SaleKey
+          }
+          else
+          {
+            <strong>@Localizer[AppStrings.NoSaleShortcut]</strong>
+          }
+        </MudText>
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudText Typo="Typo.body1">
+          <MudIcon Icon="@Icons.Material.Filled.Delete" Class="mr-2" />
+          @if (!string.IsNullOrEmpty(currentShortcut.ClearKey))
+          {
+            <strong>@Localizer[AppStrings.CurrentClearShortcut]</strong>
+            @currentShortcut.ClearKey
+          }
+          else
+          {
+            <strong>@Localizer[AppStrings.NoClearShortcut]</strong>
+          }
+        </MudText>
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudTextField Pattern="[^0-9]" Label="@Localizer[AppStrings.SaleShortcutKey]"
+          @bind-Value="currentShortcut.SaleKey" Variant="Variant.Outlined" Margin="Margin.Dense" MaxLength="1"
+          FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudTextField Pattern="[^0-9]" Label="@Localizer[AppStrings.ClearShortcutKey]"
+          @bind-Value="currentShortcut.ClearKey" Variant="Variant.Outlined" Margin="Margin.Dense" MaxLength="1"
+          FullWidth />
+      </MudItem>
+    </MudItem>
+  </MudGrid>
+
+  <MudStack Row="true" Spacing="4" Justify="Justify.Center" Class="mt-6">
+    <MudItem>
+      <MudButton OnClick='() => NavigatePage("/")' Color="Color.Secondary" Variant="Variant.Outlined"
+        EndIcon="@Icons.Material.Filled.ArrowBack">
+        @Localizer[AppStrings.Back]
+      </MudButton>
+    </MudItem>
+    <MudItem>
+      <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit"
+        EndIcon="@Icons.Material.Filled.Save">
+        @Localizer[AppStrings.Save]
+      </MudButton>
+    </MudItem>
+    <MudItem>
+      <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="ResetShortcutAsync">
+        @Localizer[AppStrings.ResetKeys]
+      </MudButton>
+    </MudItem>
+  </MudStack>
+</EditForm>

@@ -1,0 +1,69 @@
+﻿@page "/add-product"
+@using BarcodeSalesApp.App.Resources.Strings
+
+<EditForm Model="addProductModel" OnValidSubmit="SaveProductAsync">
+  <DataAnnotationsValidator />
+
+  <MudGrid Spacing="4" Justify="Justify.Center">
+    <MudItem xs="12" sm="8" md="6" lg="4">
+
+      <MudItem Class="mb-5">
+        <MudText Typo="Typo.h3" Class="d-flex align-center">
+          <MudIcon Icon="@Icons.Material.Filled.AddBox" Class="mr-2" />
+          @Localizer[AppStrings.AddProduct]
+        </MudText>
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudTextField @bind-Value="addProductModel.Name" Label="@Localizer[AppStrings.ProductName]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" Required="true" Clearable FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudSelect @bind-Value="addProductModel.IsBarcoded" Label="@Localizer[AppStrings.IsBarcoded]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth>
+          <MudSelectItem Value="true">@Localizer[AppStrings.Yes]</MudSelectItem>
+          <MudSelectItem Value="false">@Localizer[AppStrings.No]</MudSelectItem>
+        </MudSelect>
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField @bind-Value="addProductModel.Barcode" Label="@Localizer[AppStrings.Barcode]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" Disabled="@(!addProductModel.IsBarcoded)"
+          HideSpinButtons="true" FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField @bind-Value="addProductModel.PurchasePrice" Label="@Localizer[AppStrings.PurchasePrice]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" Adornment="Adornment.End" Required="true"
+          HideSpinButtons="true" Step="0.1M" Culture="@_culture" FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField @bind-Value="addProductModel.SalePrice" Label="@Localizer[AppStrings.SalePrice]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" Adornment="Adornment.End" Required="true"
+          HideSpinButtons="true" Step="0.1M" Culture="@_culture" FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField @bind-Value="addProductModel.UnitsPerCase" Label="@Localizer[AppStrings.UnitsPerCase]"
+          Variant="Variant.Outlined" Margin="Margin.Dense" HideSpinButtons="true" FullWidth />
+      </MudItem>
+
+      <MudGrid Spacing="6" Justify="Justify.Center" Class="mt-6">
+        <MudItem>
+          <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit"
+            EndIcon="@Icons.Material.Filled.Save">
+            @Localizer[AppStrings.Save]
+          </MudButton>
+        </MudItem>
+        <MudItem>
+          <MudButton OnClick="Back" Color="Color.Secondary" Variant="Variant.Outlined"
+            StartIcon="@Icons.Material.Filled.ArrowBack">
+            @Localizer[AppStrings.Back]
+          </MudButton>
+        </MudItem>
+      </MudGrid>
+    </MudItem>
+  </MudGrid>
+</EditForm>

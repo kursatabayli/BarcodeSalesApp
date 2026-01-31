@@ -1,0 +1,122 @@
+﻿@using BarcodeSalesApp.App.Resources.Strings
+@using BarcodeSalesApp.Contracts.Services
+@using Microsoft.Extensions.Localization
+@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@_theme" IsDarkMode="ThemeService.IsDarkMode" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true" Fixed="true">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start"
+            OnClick="ToggleDrawer" />
+        <MudText Typo="Typo.h5" Class="ml-3">@Localizer[AppStrings.Title]</MudText>
+    </MudAppBar>
+
+    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" Variant="DrawerVariant.Mini">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudItem xs="12" Class="mt-6 pa-6">
+            @Body
+        </MudItem>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    [Inject] private IStringLocalizer<AppStrings> Localizer { get; set; } = default!;
+    [Inject] private IThemeService ThemeService { get; set; } = default!;
+    [Inject] private ILanguageService LanguageService { get; set; } = default!;
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    private MudTheme? _theme = null;
+    private bool _drawerOpen = false;
+
+    private void ToggleDrawer() => _drawerOpen = !_drawerOpen;
+    protected override void OnInitialized()
+    {
+        ThemeService.LoadTheme();
+        LanguageService.LoadActiveLanguage();
+
+        ThemeService.OnThemeChanged += OnThemeChanged;
+        LanguageService.LanguageChanged += OnLanguageChanged;
+
+        _theme = new MudTheme()
+        {
+            PaletteLight = _lightPalette,
+            PaletteDark = _darkPalette,
+            LayoutProperties = new LayoutProperties()
+        };
+    }
+    private async Task OnLanguageChanged(string cultureCode)
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task OnThemeChanged()
+    {
+        await InvokeAsync(StateHasChanged);
+    }
+    public void Dispose()
+    {
+        ThemeService.OnThemeChanged -= OnThemeChanged;
+        LanguageService.LanguageChanged -= OnLanguageChanged;
+    }
+    private readonly PaletteLight _lightPalette = new PaletteLight()
+    {
+        Primary = "#0969DA",
+        Secondary = "#8250DF",
+        Background = "#F6F8FA",
+        Surface = "#FFFFFF",
+        AppbarBackground = "#F6F8FA",
+        AppbarText = "#1F2328",
+        DrawerBackground = "#FFFFFF",
+        DrawerText = "#24292F",
+        DrawerIcon = "#1F2328",
+        TextPrimary = "#1F2328",
+        TextSecondary = "#57606A",
+        TextDisabled = "#8C959F",
+        ActionDefault = "#24292F",
+        ActionDisabled = "#D0D7DE",
+        ActionDisabledBackground = "#EAECEF",
+        LinesDefault = "#D8DEE4",
+        TableLines = "#D8DEE4",
+        Divider = "#D0D7DE",
+        OverlayLight = "rgba(0, 0, 0, 0.04)",
+        Info = "#1D76DB",
+        Success = "#2DA44E",
+        Warning = "#FFD33D",
+        Error = "#CF222E",
+        Black = "#000000",
+        White = "#ffffff"
+    };
+
+    private readonly PaletteDark _darkPalette = new PaletteDark()
+    {
+        Primary = "#58A6FF",
+        Secondary = "#D2A8FF",
+        Background = "#0D1117",
+        Surface = "#161B22",
+        AppbarBackground = "#0D1117",
+        AppbarText = "#C9D1D9",
+        DrawerBackground = "#161B22",
+        DrawerText = "#E6EDF3",
+        DrawerIcon = "#C9D1D9",
+        TextPrimary = "#C9D1D9",
+        TextSecondary = "#8B949E",
+        TextDisabled = "#6E7681",
+        ActionDefault = "#C9D1D9",
+        ActionDisabled = "#484F58",
+        ActionDisabledBackground = "#21262D",
+        LinesDefault = "#30363D",
+        TableLines = "#30363D",
+        Divider = "#30363D",
+        OverlayLight = "rgba(255, 255, 255, 0.05)",
+        Info = "#58A6FF",
+        Success = "#3FB950",
+        Warning = "#D29922",
+        Error = "#F85149",
+        Black = "#000000",
+        White = "#ffffff"
+    };
+}

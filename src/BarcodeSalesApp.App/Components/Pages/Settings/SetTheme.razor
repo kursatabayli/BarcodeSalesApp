@@ -1,0 +1,37 @@
+﻿@using BarcodeSalesApp.App.Resources.Strings
+@using BarcodeSalesApp.Contracts.Services
+@using Microsoft.Extensions.Localization
+
+<MudIcon Icon="@(ThemeService.IsDarkMode? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)"
+  Color="Color.Warning" Class="mr-4" />
+<div class="flex-grow-1">
+  <MudText><b>@Localizer[AppStrings.Theme]</b></MudText>
+  <MudText Typo="Typo.body2">
+    @(ThemeService.IsDarkMode? Localizer[AppStrings.NightMode] : Localizer[AppStrings.DayMode])
+  </MudText>
+</div>
+
+<MudSwitch @bind-Value="IsDarkModeProxy" ThumbIconColor="@(ThemeService.IsDarkMode? Color.Dark: Color.Warning)"
+  ThumbIcon="@(ThemeService.IsDarkMode? Icons.Material.Filled.DarkMode : Icons.Material.Filled.LightMode)" />
+
+@code {
+  [Inject] IThemeService ThemeService { get; set; } = default!;
+  [Inject] IStringLocalizer<AppStrings> Localizer { get; set; } = default!;
+  private bool IsDarkModeProxy
+  {
+    get => ThemeService.IsDarkMode;
+
+    set
+    {
+      if (ThemeService.IsDarkMode != value)
+      {
+        ThemeService.SetTheme(value);
+      }
+    }
+  }
+  protected override void OnInitialized() => ThemeService.OnThemeChanged += RefreshUI;
+
+  private async Task RefreshUI() => await InvokeAsync(StateHasChanged);
+
+  public void Dispose() => ThemeService.OnThemeChanged -= RefreshUI;
+}

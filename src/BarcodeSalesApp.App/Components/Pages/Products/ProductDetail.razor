@@ -1,0 +1,81 @@
+﻿@page "/product-detail/{id:long}"
+@using BarcodeSalesApp.App.Resources.Strings
+
+
+<MudGrid Justify="Justify.SpaceAround" Class="mt-8">
+  <MudStack Spacing="4">
+    <MudText Typo="Typo.h5" Class="d-flex align-center gap-2 mb-2">
+      <MudIcon Icon="@Icons.Material.Filled.Inventory" Class="mr-2" />
+      @Localizer[AppStrings.ProductInfo]
+    </MudText>
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.QrCode" Class="mr-2" />
+      <strong>@Localizer[AppStrings.Barcode] :</strong> @productModel?.Barcode
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.Label" Class="mr-2" />
+      <strong>@Localizer[AppStrings.ProductName] :</strong> @productModel?.Name
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.Money" Class="mr-2" />
+      <strong>@Localizer[AppStrings.PurchasePrice] :</strong> @productModel?.PurchasePrice.ToString("C")
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.AttachMoney" Class="mr-2" />
+      <strong>@Localizer[AppStrings.SalePrice] :</strong> @productModel?.SalePrice.ToString("C")
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.TrendingUp" Class="mr-2" />
+      <strong>@Localizer[AppStrings.Profit] :</strong> @($"{productModel?.SalePrice - productModel?.PurchasePrice:C}")
+    </MudText>
+  </MudStack>
+
+  <MudStack Spacing="4">
+    <MudText Typo="Typo.h5" Class="d-flex align-center gap-2 mb-2">
+      <MudIcon Icon="@Icons.Material.Filled.Warehouse" Class="mr-2" />
+      @Localizer[AppStrings.StockInfo]
+    </MudText>
+
+    <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.GridOn" Class="mr-2" />
+      <strong>@Localizer[AppStrings.ProductInBox] :</strong> @productModel?.UnitsPerCase
+    </MudText>
+
+    @* <MudText Typo="Typo.body1" Class="d-flex align-center gap-2">
+      <MudIcon Icon="@Icons.Material.Filled.Category" Class="mr-2" />
+      <strong>@Localizer["TotalStock"]:</strong> @productModel?.StockQuantity
+    </MudText> *@
+  </MudStack>
+</MudGrid>
+
+<MudGrid Spacing="6" Justify="Justify.Center" Class="mt-6">
+  <MudItem>
+    <MudButton OnClick='() => NavigatePage("/product-list")' Color="Color.Secondary" Variant="Variant.Outlined"
+      StartIcon="@Icons.Material.Filled.ArrowBack">
+      @Localizer[AppStrings.Back]
+    </MudButton>
+  </MudItem>
+  <MudItem>
+    <MudButton OnClick='() => NavigatePage($"/edit-product/{Id}")' Color="Color.Success" Variant="Variant.Outlined"
+      StartIcon="@Icons.Material.Filled.Edit">
+      @Localizer[AppStrings.Update]
+    </MudButton>
+  </MudItem>
+  <MudItem>
+    <MudButton OnClick='() => NavigatePage($"/edit-stock/{Id}")' Color="Color.Primary" Variant="Variant.Outlined"
+      StartIcon="@Icons.Material.Filled.AddShoppingCart">
+      @Localizer[AppStrings.EnterStock]
+    </MudButton>
+  </MudItem>
+
+  <MudItem>
+    <MudButton OnClick="DeleteItemAsync" Color="Color.Error" Variant="Variant.Filled"
+      StartIcon="@Icons.Material.Filled.Delete">
+      @Localizer[AppStrings.Delete]
+    </MudButton>
+  </MudItem>
+</MudGrid>

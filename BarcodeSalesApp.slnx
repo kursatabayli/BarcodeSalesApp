@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/src/">
+    <Project Path="src/BarcodeSalesApp.App/BarcodeSalesApp.App.csproj" />
+    <Project Path="src/BarcodeSalesApp.Application/BarcodeSalesApp.Application.csproj" />
+    <Project Path="src/BarcodeSalesApp.Contracts/BarcodeSalesApp.Contracts.csproj" />
+    <Project Path="src/BarcodeSalesApp.Domain/BarcodeSalesApp.Domain.csproj" />
+    <Project Path="src/BarcodeSalesApp.Infrastructure/BarcodeSalesApp.Infrastructure.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,58 @@
+﻿@page "/edit-product/{id:long}"
+
+
+
+<EditForm Model="productModel" OnValidSubmit="UpdateProductAsync">
+  <DataAnnotationsValidator />
+
+  <MudGrid Spacing="4" Justify="Justify.Center">
+    <MudItem xs="12" sm="8" md="6" lg="4">
+
+      <MudItem Class="mb-5">
+        <MudText Typo="Typo.h5" Class="d-flex align-center">
+          <MudIcon Icon="@Icons.Material.Filled.Assignment" Class="mr-2" />
+          @Localizer["UpdateProduct"]
+        </MudText>
+      </MudItem>
+      <MudItem Class="mb-4">
+        <MudNumericField Label="@Localizer["Barcode"]" @bind-Value="productModel.Barcode" Variant="Variant.Outlined"
+          Margin="Margin.Dense" FullWidth HideSpinButtons="true" Disabled />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudTextField Label="@Localizer["ProductName"]" @bind-Value="productModel.Name" Variant="Variant.Outlined"
+          Margin="Margin.Dense" Clearable FullWidth />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField Label="@Localizer["PurchasePrice"]" @bind-Value="productModel.PurchasePrice"
+          Variant="Variant.Outlined" Margin="Margin.Dense" Adornment="Adornment.End" FullWidth HideSpinButtons="true"
+          Step="0.1M" />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField Label="@Localizer["SalePrice"]" @bind-Value="productModel.SalePrice" Variant="Variant.Outlined"
+          Margin="Margin.Dense" Adornment="Adornment.End" FullWidth HideSpinButtons="true" Step="0.1M" />
+      </MudItem>
+
+      <MudItem Class="mb-4">
+        <MudNumericField Label="@Localizer["UnitsPerCase"]" @bind-Value="productModel.UnitsPerCase"
+          Variant="Variant.Outlined" Margin="Margin.Dense" FullWidth HideSpinButtons="true" />
+      </MudItem>
+    </MudItem>
+
+  </MudGrid>
+  <MudStack Row="true" Spacing="6" Class="mt-4" Justify="Justify.Center">
+
+    <MudButton OnClick='() => NavigatePage($"/product-detail/{Id}")' Color="Color.Secondary" Variant="Variant.Outlined"
+      EndIcon="@Icons.Material.Filled.ArrowBack">
+      @Localizer["Back"]
+    </MudButton>
+
+    <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit"
+      EndIcon="@Icons.Material.Filled.Save">
+      @Localizer["Update"]
+    </MudButton>
+
+  </MudStack>
+</EditForm>
